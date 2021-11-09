@@ -14,6 +14,9 @@
 		F71AC3B4273A97F1003DCDA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71AC3B2273A97F1003DCDA7 /* LaunchScreen.storyboard */; };
 		F71AC3BF273A97F1003DCDA7 /* AppleCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71AC3BE273A97F1003DCDA7 /* AppleCodingTests.swift */; };
 		F71AC3CA273A97F1003DCDA7 /* AppleCodingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71AC3C9273A97F1003DCDA7 /* AppleCodingUITests.swift */; };
+		F749F1E2273AE803002A7125 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1E1273AE803002A7125 /* Constants.swift */; };
+		F749F1EA273AE819002A7125 /* Constants_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1E9273AE819002A7125 /* Constants_Error.swift */; };
+		F749F1F2273AE860002A7125 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1F1273AE860002A7125 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		F71AC3C5273A97F1003DCDA7 /* AppleCodingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleCodingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71AC3C9273A97F1003DCDA7 /* AppleCodingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleCodingUITests.swift; sourceTree = "<group>"; };
 		F71AC3CB273A97F1003DCDA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F749F1E1273AE803002A7125 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F749F1E9273AE819002A7125 /* Constants_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants_Error.swift; sourceTree = "<group>"; };
+		F749F1F1273AE860002A7125 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +103,15 @@
 		F71AC3A6273A97F0003DCDA7 /* AppleCoding */ = {
 			isa = PBXGroup;
 			children = (
-				F71AC3A7273A97F0003DCDA7 /* AppDelegate.swift */,
-				F71AC3AB273A97F0003DCDA7 /* ViewController.swift */,
-				F71AC3AD273A97F0003DCDA7 /* Main.storyboard */,
-				F71AC3B0273A97F1003DCDA7 /* Assets.xcassets */,
-				F71AC3B2273A97F1003DCDA7 /* LaunchScreen.storyboard */,
-				F71AC3B5273A97F1003DCDA7 /* Info.plist */,
+				F749F1DA273AE77D002A7125 /* API */,
+				F749F1DB273AE77D002A7125 /* App */,
+				F749F1DC273AE77D002A7125 /* Components */,
+				F749F1DD273AE77D002A7125 /* Constants */,
+				F749F1D9273AE77D002A7125 /* Extensions */,
+				F749F1FA273AEA58002A7125 /* Module */,
+				F749F1DE273AE77D002A7125 /* Models */,
+				F749F1DF273AE77D002A7125 /* Resources */,
+				F749F1E0273AE77D002A7125 /* Storyboard */,
 			);
 			path = AppleCoding;
 			sourceTree = "<group>";
@@ -123,6 +132,150 @@
 				F71AC3CB273A97F1003DCDA7 /* Info.plist */,
 			);
 			path = AppleCodingUITests;
+			sourceTree = "<group>";
+		};
+		F749F1D9273AE77D002A7125 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F749F1DA273AE77D002A7125 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		F749F1DB273AE77D002A7125 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F71AC3A7273A97F0003DCDA7 /* AppDelegate.swift */,
+				F71AC3B5273A97F1003DCDA7 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F749F1DC273AE77D002A7125 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F749F1F1273AE860002A7125 /* BaseViewController.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F749F1DD273AE77D002A7125 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				F749F1E1273AE803002A7125 /* Constants.swift */,
+				F749F1E9273AE819002A7125 /* Constants_Error.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		F749F1DE273AE77D002A7125 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F749F1DF273AE77D002A7125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F71AC3B0273A97F1003DCDA7 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F749F1E0273AE77D002A7125 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F749F1F8273AE9C9002A7125 /* LaunchScreen */,
+				F749F1F9273AE9C9002A7125 /* Main */,
+				F749F1F7273AE91E002A7125 /* Home */,
+				F749F1F6273AE91E002A7125 /* Login */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		F749F1F6273AE91E002A7125 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F749F1F7273AE91E002A7125 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F749F1F8273AE9C9002A7125 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F71AC3B2273A97F1003DCDA7 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		F749F1F9273AE9C9002A7125 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F71AC3AD273A97F0003DCDA7 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F749F1FA273AEA58002A7125 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				F749F1FD273AEAB7002A7125 /* Main */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		F749F1FD273AEAB7002A7125 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F749F204273AEBB5002A7125 /* Factory */,
+				F749F202273AEBB5002A7125 /* Library */,
+				F749F203273AEBB5002A7125 /* Model */,
+				F749F205273AEBB5002A7125 /* ViewController */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F749F202273AEBB5002A7125 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		F749F203273AEBB5002A7125 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F749F204273AEBB5002A7125 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		F749F205273AEBB5002A7125 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F71AC3AB273A97F0003DCDA7 /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F749F1F2273AE860002A7125 /* BaseViewController.swift in Sources */,
 				F71AC3AC273A97F0003DCDA7 /* ViewController.swift in Sources */,
 				F71AC3A8273A97F0003DCDA7 /* AppDelegate.swift in Sources */,
+				F749F1EA273AE819002A7125 /* Constants_Error.swift in Sources */,
+				F749F1E2273AE803002A7125 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +589,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppleCoding/Info.plist;
+				INFOPLIST_FILE = AppleCoding/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,7 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppleCoding/Info.plist;
+				INFOPLIST_FILE = AppleCoding/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
