@@ -18,11 +18,13 @@ class ItemListViewController: UIViewController {
     private var records = [Item]()
     
     private let imageUrls = [
+        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
-        "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Pomegranate_fruit_-_whole_and_piece_with_arils.jpg/440px-Pomegranate_fruit_-_whole_and_piece_with_arils.jpg",
         "https://www.thekohsamuiguide.com/wp-content/uploads/2012/01/thai-fruit-32-1.jpg",
         "https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/05/apples-1296x728-header.jpg?w=1155&h=1528",
-        "https://www.verywellfit.com/thmb/a4580FjTjbub9q4kI5m9X-Po-p0=/2002x1334/filters:no_upscale():max_bytes(150000):strip_icc()/Bananas-5c6a36a346e0fb0001f0e4a3.jpg"]
+        "https://www.verywellfit.com/thmb/a4580FjTjbub9q4kI5m9X-Po-p0=/2002x1334/filters:no_upscale():max_bytes(150000):strip_icc()/Bananas-5c6a36a346e0fb0001f0e4a3.jpg"
+    ]
     
     private var allViewConstraints = [NSLayoutConstraint]()
     private enum Metrics {
@@ -33,6 +35,8 @@ class ItemListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        print(CreateFileDirectory.library.rawValue)
         table.register(
             ItemCell.self,
             forCellReuseIdentifier: ItemDataSource.ItemSection.cellIdentifier(.main)()
@@ -40,7 +44,7 @@ class ItemListViewController: UIViewController {
         self.view.addSubview(table)
        
         if records.isEmpty {
-            for index in 0...4 {
+            for index in 0...imageUrls.count-1 {
                 if let url = URL(string: imageUrls[index]) {
                     records.append(
                         Item(
@@ -52,13 +56,27 @@ class ItemListViewController: UIViewController {
                
             }
         }
+        do{
+            try checkForFileDirectory()
+        }catch{
+            print("Directory Creation Failed")
+        }
         
         tableDataSource = ItemDataSource(items: records)
         // set table datasource
         self.table.dataSource = tableDataSource
         self.table.delegate = self
     }
-    
+    private func checkForFileDirectory() throws{
+        let defaultManager = FileManager.default
+        if let filesDirUrl = CreateFileDirectory.files.directoryURL {
+            if !defaultManager.fileExists(atPath: filesDirUrl.path){
+                try defaultManager.createDirectory(atPath: filesDirUrl.path, withIntermediateDirectories: false, attributes: nil)
+            }
+        }
+        
+        
+    }
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         if !allViewConstraints.isEmpty{

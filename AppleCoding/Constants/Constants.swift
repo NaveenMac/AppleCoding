@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class Constants {
+    static let FILE_DIR = "files"
+    
+}

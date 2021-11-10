@@ -13,6 +13,7 @@ enum CreateFileDirectory: Int {
    case cache
    case tmp
    case applicationSupport
+   case files
    
    // Return the base URL for the selected directory.
    var directoryURL: URL? {
@@ -47,6 +48,13 @@ enum CreateFileDirectory: Int {
                             in: .userDomainMask,
                             appropriateFor: nil,
                             create: false)
+      case .files:
+         baseDirectory = try?
+            fileManager.url(for: .libraryDirectory,
+                            in: .userDomainMask,
+                            appropriateFor: nil,
+                            create: false).appendingPathComponent(Constants.FILE_DIR)
+        
       }
       
       return baseDirectory

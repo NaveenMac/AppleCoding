@@ -68,16 +68,60 @@ extension ItemDataSource: UITableViewDataSource{
         ImageCache.publicCache.load(
             url: currentItem.url as NSURL,
             item: currentItem
-        ) { (fetchedItem, image) in
+        ) { (fetchedItem, image, data) in
+            guard let fileData = data else { return }
             
-            if let _ = cell as? ItemCell,
-               let img = image,
-               img != fetchedItem.image
-            {
-                currentItem.image = img
-                tableView.reloadData()
-               // itemCell.itemImageView?.image = img
+            let mimeType = Helper.mimeType(for: fileData)
+            let lastPathComponent = currentItem.url.lastPathComponent
+            let fileName = lastPathComponent.split(separator: ".")[0]
+            switch mimeType{
+                case "image/png":
+                    if let _ = cell as? ItemCell,
+                       let img = image,
+                       img != fetchedItem.image
+                    {
+                        currentItem.image = img
+                        if !CreateFileDirectory.files.createFile("\(fileName).png", contents: fileData)
+                        {
+                            print("File Not Created")
+                        }
+                        
+                       // itemCell.itemImageView?.image = img
+                    }
+                    
+                    
+                case "image/jpeg":
+                    if let _ = cell as? ItemCell,
+                       let img = image,
+                       img != fetchedItem.image
+                    {
+                        currentItem.image = img
+                        if !CreateFileDirectory.files.createFile("\(fileName).jpg", contents: fileData)
+                        {
+                            print("File Not Created")
+                        }
+                        
+                       // itemCell.itemImageView?.image = img
+                    }
+                case "application/pdf":
+                    if let _ = cell as? ItemCell
+                    {
+                        currentItem.image = UIImage(named: "icon_pdf")
+                        if !CreateFileDirectory.files.createFile("\(fileName).pdf", contents: fileData)
+                        {
+                            print("File Not Created")
+                        }
+                        
+                       // itemCell.itemImageView?.image = img
+                    }
+                    
+                    
+            
+                default:
+                    print("Extenstion is unknown")
             }
+            
+            tableView.reloadData()
         }
         
         return cell
