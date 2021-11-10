@@ -15,6 +15,8 @@ class ItemCell: UITableViewCell {
     var itemLabel: UILabel?
     var itemImageView:  UIImageView?
     
+    var allViewContraints = [NSLayoutConstraint]()
+    private let metrics = ["imageWidth":60.0, "spacing":16.0, "margin":16.0]
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         itemLabel = UILabel()
@@ -23,21 +25,30 @@ class ItemCell: UITableViewCell {
         itemLabel?.translatesAutoresizingMaskIntoConstraints = false
         itemImageView?.translatesAutoresizingMaskIntoConstraints = false
         
-    
-        self.contentView.addSubview(itemImageView!)
-        self.contentView.addSubview(itemLabel!)
+        let container = UIView.HStack(spacing: 16,alignment: .fill, distribution: .fill)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.addArrangedSubview(itemImageView!)
+        container.addArrangedSubview(itemLabel!)
         
-        let viewDict = ["image":itemImageView, "title": itemLabel]
-        var viewConstraints = [NSLayoutConstraint] ()
+        self.contentView.addSubview(container)
         
-        let rowConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image(=60)]-16-[title]-|", options: [], metrics: nil, views: viewDict as [String : Any])
+        let viewDict = ["image":itemImageView, "title": itemLabel,"container":container]
         
-        viewConstraints += rowConstraints
+        let containerHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[container]-margin-|", options: [.alignAllCenterY], metrics: metrics, views: viewDict as [String : Any])
+        allViewContraints += containerHorizontalConstraints
         
-        NSLayoutConstraint.activate(viewConstraints)
+        let containerVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: [], metrics: metrics, views: viewDict as [String : Any])
+        allViewContraints += containerVerticalConstraints
+        let imageConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[image(==imageWidth)]", options: [.alignAllCenterY], metrics: metrics, views: viewDict as [String : Any])
+        
+        allViewContraints += imageConstraints
+        
+        
+        NSLayoutConstraint.activate(allViewContraints)
         
        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

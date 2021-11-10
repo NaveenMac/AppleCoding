@@ -8,7 +8,12 @@
 import UIKit
 
 class ItemListViewController: UIViewController {
-    private var table:UITableView?
+    private var table:UITableView = {
+            let table = UITableView()
+            table.backgroundColor = .gray
+            table.translatesAutoresizingMaskIntoConstraints = false
+            return table
+    }()
     private var tableDataSource:UITableViewDataSource?
     private var records = [Item]()
     
@@ -28,10 +33,8 @@ class ItemListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        table = UITableView()
-        table?.backgroundColor = .gray
-        table?.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(table!)
+        table.register(ItemCell.self, forCellReuseIdentifier: ItemDataSource.ItemSection.cellIdentifier(.main)())
+        self.view.addSubview(table)
        
         if records.isEmpty {
             for index in 0...4 {
@@ -41,6 +44,9 @@ class ItemListViewController: UIViewController {
                
             }
         }
+        tableDataSource = ItemDataSource(items: records)
+        self.table.dataSource = tableDataSource
+        self.table.delegate = self
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -75,5 +81,11 @@ class ItemListViewController: UIViewController {
     }
 
 
+}
+
+extension ItemListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.0
+    }
 }
 
