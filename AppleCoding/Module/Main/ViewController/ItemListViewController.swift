@@ -14,7 +14,7 @@ class ItemListViewController: UIViewController {
             table.translatesAutoresizingMaskIntoConstraints = false
             return table
     }()
-    private var tableDataSource:UITableViewDataSource?
+    private var tableDataSource:ItemDataSource?
     private var records = [Item]()
     
     private let imageUrls = [
@@ -126,6 +126,16 @@ class ItemListViewController: UIViewController {
 extension ItemListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = tableDataSource?.item(at: indexPath.row) else {
+            fatalError("Couldn't find data source for reminder list.")
+        }
+        
+        let controller = ItemDetailViewController()
+        controller.fileURL = item.localUrl
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

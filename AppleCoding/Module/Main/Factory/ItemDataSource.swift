@@ -30,6 +30,10 @@ class ItemDataSource: NSObject {
     init(items:[Item]) {
         self.records = items
     }
+    func item(at row: Int) -> Item {
+        return records[row]
+    }
+    
     private func dequeueAndConfigureCell(for indexPath: IndexPath, from tableView: UITableView) -> UITableViewCell {
         
         guard let section = ItemSection(rawValue: indexPath.section) else {
@@ -84,6 +88,11 @@ extension ItemDataSource: UITableViewDataSource{
                         if !CreateFileDirectory.files.createFile("\(fileName).png", contents: fileData)
                         {
                             print("File Not Created")
+                        }else{
+                            if let url = CreateFileDirectory.files.directoryURL {
+                                currentItem.localUrl = url.appendingPathComponent("\(fileName).png")
+                            }
+                            
                         }
                         
                        // itemCell.itemImageView?.image = img
@@ -99,6 +108,10 @@ extension ItemDataSource: UITableViewDataSource{
                         if !CreateFileDirectory.files.createFile("\(fileName).jpg", contents: fileData)
                         {
                             print("File Not Created")
+                        }else{
+                            if let url = CreateFileDirectory.files.directoryURL {
+                                currentItem.localUrl = url.appendingPathComponent("\(fileName).jpg")
+                            }
                         }
                         
                        // itemCell.itemImageView?.image = img
@@ -110,6 +123,10 @@ extension ItemDataSource: UITableViewDataSource{
                         if !CreateFileDirectory.files.createFile("\(fileName).pdf", contents: fileData)
                         {
                             print("File Not Created")
+                        }else{
+                            if let url = CreateFileDirectory.files.directoryURL {
+                                currentItem.localUrl = url.appendingPathComponent("\(fileName).pdf")
+                            }
                         }
                         
                        // itemCell.itemImageView?.image = img

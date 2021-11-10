@@ -12,6 +12,7 @@ class Item: Hashable {
     
     var image: UIImage!
     let url: URL!
+    var localUrl:URL?
     let identifier = UUID()
     let detail: String!
     func hash(into hasher: inout Hasher) {
@@ -25,6 +26,7 @@ class Item: Hashable {
         self.detail = detail
         self.image = image
         self.url = url
+        self.localUrl = nil
     }
 
 }

@@ -20,7 +20,7 @@ class ItemDetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         if let url = fileURL {
             let ext = url.pathExtension
             switch ext {
@@ -35,6 +35,7 @@ class ItemDetailViewController: UIViewController {
                 default:
                     if let image = UIImage(contentsOfFile: url.path) {
                         imageView = UIImageView()
+                        imageView?.contentMode = .scaleAspectFit
                         imageView?.translatesAutoresizingMaskIntoConstraints = false
                         imageView?.image = image
                         self.view.addSubview(imageView!)
