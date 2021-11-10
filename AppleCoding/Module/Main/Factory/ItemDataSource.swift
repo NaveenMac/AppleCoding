@@ -31,12 +31,17 @@ class ItemDataSource: NSObject {
         self.records = items
     }
     private func dequeueAndConfigureCell(for indexPath: IndexPath, from tableView: UITableView) -> UITableViewCell {
+        
         guard let section = ItemSection(rawValue: indexPath.section) else {
             fatalError("Section index out of range")
         }
+        
         let identifier = section.cellIdentifier()
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        
         let currentItem = records[indexPath.row]
+        
         switch section {
             case .main:
                 if let mainCell = cell as? ItemCell {
@@ -44,6 +49,7 @@ class ItemDataSource: NSObject {
                     mainCell.itemImageView?.image = currentItem.image
                 }
         }
+        
         return cell
     }
 }
@@ -54,11 +60,21 @@ extension ItemDataSource: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueAndConfigureCell(for: indexPath, from: tableView)
+        let cell = dequeueAndConfigureCell(
+                for: indexPath,
+                from: tableView
+           )
         let currentItem = records[indexPath.row]
-        ImageCache.publicCache.load(url: currentItem.url as NSURL, item: currentItem) { (fetchedItem, image) in
-            if let itemCell = cell as? ItemCell, let img = image, img != fetchedItem.image {
-                    currentItem.image = img
+        ImageCache.publicCache.load(
+            url: currentItem.url as NSURL,
+            item: currentItem
+        ) { (fetchedItem, image) in
+            
+            if let _ = cell as? ItemCell,
+               let img = image,
+               img != fetchedItem.image
+            {
+                currentItem.image = img
                 tableView.reloadData()
                // itemCell.itemImageView?.image = img
             }

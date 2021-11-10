@@ -33,18 +33,28 @@ class ItemListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        table.register(ItemCell.self, forCellReuseIdentifier: ItemDataSource.ItemSection.cellIdentifier(.main)())
+        table.register(
+            ItemCell.self,
+            forCellReuseIdentifier: ItemDataSource.ItemSection.cellIdentifier(.main)()
+           )
         self.view.addSubview(table)
        
         if records.isEmpty {
             for index in 0...4 {
                 if let url = URL(string: imageUrls[index]) {
-                    records.append(Item(detail: "Image \(index+1)", image: ImageCache.publicCache.placeholderImage, url: url))
+                    records.append(
+                        Item(
+                            detail: "Image \(index+1)",
+                            image: ImageCache.publicCache.placeholderImage, url: url
+                        )
+                    )
                 }
                
             }
         }
+        
         tableDataSource = ItemDataSource(items: records)
+        // set table datasource
         self.table.dataSource = tableDataSource
         self.table.delegate = self
     }
@@ -59,6 +69,7 @@ class ItemListViewController: UIViewController {
     }
     
     private func addAllViewConstraints(){
+        
         let newInsets = self.view.safeAreaInsets
         let leftMargin = newInsets.left > 0 ? newInsets.left : Metrics.padding
         let rightMargin = newInsets.right > 0 ? newInsets.right:Metrics.padding
@@ -73,8 +84,18 @@ class ItemListViewController: UIViewController {
         ]
         let views = ["table":table]
         
-        let tableHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftMargin-[table]-rightMargin-|", options: [], metrics: metrics, views: views as [String : Any])
-        let tableVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[table]-bottomMargin-|", options: [], metrics: metrics, views:views as [String : Any])
+        let tableHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-leftMargin-[table]-rightMargin-|",
+                options: [],
+                metrics: metrics,
+                views: views as [String : Any]
+           )
+        let tableVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-topMargin-[table]-bottomMargin-|",
+                options: [],
+                metrics: metrics,
+                views:views as [String : Any]
+            )
         
         allViewConstraints+=tableHorizontalConstraints
         allViewConstraints+=tableVerticalConstraints

@@ -16,7 +16,13 @@ class ItemCell: UITableViewCell {
     var itemImageView:  UIImageView?
     var container: UIStackView?
     var allViewContraints = [NSLayoutConstraint]()
-    private let metrics = ["imageWidth":60.0, "spacing":16.0, "margin":16.0]
+    
+    private enum Metrics{
+        static let itemSpacing:CGFloat = 16.0
+        static let imageWidth:CGFloat = 60.0
+        static let margin:CGFloat = 16.0
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         itemLabel = UILabel()
@@ -39,14 +45,40 @@ class ItemCell: UITableViewCell {
     
     
     func addAllViewConstraints() {
-        let viewDict = ["image":itemImageView, "title": itemLabel,"container":container]
+        let viewDict = [
+            "image":itemImageView,
+             "title": itemLabel,
+             "container":container
+        ]
+        let metrics = [
+            "imageWidth":Metrics.imageWidth,
+            "spacing":Metrics.itemSpacing,
+            "margin":Metrics.margin
+        ]
         
-        let containerHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[container]-margin-|", options: [.alignAllCenterY], metrics: metrics, views: viewDict as [String : Any])
+        let containerHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-margin-[container]-margin-|",
+                options: [.alignAllCenterY],
+                metrics: metrics,
+                views: viewDict as [String : Any]
+            )
         allViewContraints += containerHorizontalConstraints
         
-        let containerVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: [], metrics: metrics, views: viewDict as [String : Any])
+        let containerVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[container]-|",
+                options: [],
+                metrics: metrics,
+                views: viewDict as [String : Any]
+            )
+        
         allViewContraints += containerVerticalConstraints
-        let imageConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[image(==imageWidth)]", options: [.alignAllCenterY], metrics: metrics, views: viewDict as [String : Any])
+        
+        let imageConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[image(==imageWidth)]",
+            options: [.alignAllCenterY],
+            metrics: metrics,
+            views: viewDict as [String : Any]
+        )
         
         allViewContraints += imageConstraints
         
