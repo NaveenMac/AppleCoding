@@ -8,29 +8,27 @@
 import UIKit
 
 class ItemDataSource: NSObject {
-    var items:[Item]?
+    var records = [Item]()
     enum ItemSection:Int, CaseIterable{
-        case item
+        case main
         
         var displayTitle:String {
             switch self {
-                case .item:
+                case .main:
                     return "List of items"
-                default:
-                    print("Section Not Found")
+                
             }
         }
         func cellIdentifier()->String{
             switch self {
-                case .item:
+                case .main:
                     return "itemCellIdentifier"
-                default:
-                    print("Section Not Found")
+                
             }
         }
     }
-    init(items:[Item]?) {
-        self.items = items
+    init(items:[Item]) {
+        self.records = items
     }
     private func dequeueAndConfigureCell(for indexPath: IndexPath, from tableView: UITableView) -> UITableViewCell {
         guard let section = ItemSection(rawValue: indexPath.section) else {
@@ -38,16 +36,25 @@ class ItemDataSource: NSObject {
         }
         let identifier = section.cellIdentifier()
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let currentItem = records[indexPath.row]
+        switch section {
+            case .main:
+                if let mainCell = cell as? ItemCell {
+                    mainCell.itemLabel?.text = currentItem.detail
+                    mainCell.itemImageView?.image = currentItem.image
+                }
+        }
+        return cell
     }
 }
 
 extension ItemDataSource: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items?.count ?? 0
+        return self.records.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        return dequeueAndConfigureCell(for: indexPath, from: tableView)
     }
     
     

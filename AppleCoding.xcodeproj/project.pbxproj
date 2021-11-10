@@ -14,6 +14,9 @@
 		F71AC3B4273A97F1003DCDA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71AC3B2273A97F1003DCDA7 /* LaunchScreen.storyboard */; };
 		F71AC3BF273A97F1003DCDA7 /* AppleCodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71AC3BE273A97F1003DCDA7 /* AppleCodingTests.swift */; };
 		F71AC3CA273A97F1003DCDA7 /* AppleCodingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71AC3C9273A97F1003DCDA7 /* AppleCodingUITests.swift */; };
+		F730FB71273B886000B75F94 /* Extensions_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F730FB70273B886000B75F94 /* Extensions_UIView.swift */; };
+		F730FB76273B997100B75F94 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F730FB75273B997100B75F94 /* ImageCache.swift */; };
+		F730FB7B273B9A2C00B75F94 /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F730FB7A273B9A2C00B75F94 /* ImageURLProtocol.swift */; };
 		F749F1E2273AE803002A7125 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1E1273AE803002A7125 /* Constants.swift */; };
 		F749F1EA273AE819002A7125 /* Constants_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1E9273AE819002A7125 /* Constants_Error.swift */; };
 		F749F1F2273AE860002A7125 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F1F1273AE860002A7125 /* BaseViewController.swift */; };
@@ -54,6 +57,9 @@
 		F71AC3C5273A97F1003DCDA7 /* AppleCodingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleCodingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71AC3C9273A97F1003DCDA7 /* AppleCodingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleCodingUITests.swift; sourceTree = "<group>"; };
 		F71AC3CB273A97F1003DCDA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F730FB70273B886000B75F94 /* Extensions_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions_UIView.swift; sourceTree = "<group>"; };
+		F730FB75273B997100B75F94 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		F730FB7A273B9A2C00B75F94 /* ImageURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLProtocol.swift; sourceTree = "<group>"; };
 		F749F1E1273AE803002A7125 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F749F1E9273AE819002A7125 /* Constants_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants_Error.swift; sourceTree = "<group>"; };
 		F749F1F1273AE860002A7125 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		F749F1D9273AE77D002A7125 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F730FB70273B886000B75F94 /* Extensions_UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -263,6 +270,7 @@
 		F749F202273AEBB5002A7125 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F730FB7A273B9A2C00B75F94 /* ImageURLProtocol.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				F749F222273AF5C6002A7125 /* ItemDataSource.swift */,
+				F730FB75273B997100B75F94 /* ImageCache.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -460,10 +469,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F730FB76273B997100B75F94 /* ImageCache.swift in Sources */,
 				F749F1F2273AE860002A7125 /* BaseViewController.swift in Sources */,
 				F749F223273AF5C6002A7125 /* ItemDataSource.swift in Sources */,
 				F749F22A273AF9E4002A7125 /* ItemCell.swift in Sources */,
 				F749F216273AF2CF002A7125 /* CreateFileDirectory.swift in Sources */,
+				F730FB7B273B9A2C00B75F94 /* ImageURLProtocol.swift in Sources */,
+				F730FB71273B886000B75F94 /* Extensions_UIView.swift in Sources */,
 				F71AC3AC273A97F0003DCDA7 /* ItemListViewController.swift in Sources */,
 				F71AC3A8273A97F0003DCDA7 /* AppDelegate.swift in Sources */,
 				F749F21E273AF585002A7125 /* Item.swift in Sources */,
