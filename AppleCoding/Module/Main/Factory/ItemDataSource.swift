@@ -54,7 +54,17 @@ extension ItemDataSource: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return dequeueAndConfigureCell(for: indexPath, from: tableView)
+        let cell = dequeueAndConfigureCell(for: indexPath, from: tableView)
+        let currentItem = records[indexPath.row]
+        ImageCache.publicCache.load(url: currentItem.url as NSURL, item: currentItem) { (fetchedItem, image) in
+            if let itemCell = cell as? ItemCell, let img = image, img != fetchedItem.image {
+                    currentItem.image = img
+                tableView.reloadData()
+               // itemCell.itemImageView?.image = img
+            }
+        }
+        
+        return cell
     }
     
     
