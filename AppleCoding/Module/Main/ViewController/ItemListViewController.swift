@@ -19,7 +19,7 @@ class ItemListViewController: UIViewController {
     
     private let imageUrls = [
         "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
-        "https://www.eatthis.com/wp-content/uploads/sites/4//media/images/ext/769504118/apples-best-fruit-weight-loss.jpg?quality=82&strip=1&resize=640%2C360",
+        "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
         "https://www.thekohsamuiguide.com/wp-content/uploads/2012/01/thai-fruit-32-1.jpg",
         "https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/05/apples-1296x728-header.jpg?w=1155&h=1528",
         "https://www.verywellfit.com/thmb/a4580FjTjbub9q4kI5m9X-Po-p0=/2002x1334/filters:no_upscale():max_bytes(150000):strip_icc()/Bananas-5c6a36a346e0fb0001f0e4a3.jpg"]
