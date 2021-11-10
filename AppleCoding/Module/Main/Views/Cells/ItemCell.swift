@@ -14,7 +14,7 @@ class ItemCell: UITableViewCell {
     
     var itemLabel: UILabel?
     var itemImageView:  UIImageView?
-    
+    var container: UIStackView?
     var allViewContraints = [NSLayoutConstraint]()
     private let metrics = ["imageWidth":60.0, "spacing":16.0, "margin":16.0]
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,13 +25,20 @@ class ItemCell: UITableViewCell {
         itemLabel?.translatesAutoresizingMaskIntoConstraints = false
         itemImageView?.translatesAutoresizingMaskIntoConstraints = false
         
-        let container = UIView.HStack(spacing: 16,alignment: .fill, distribution: .fill)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.addArrangedSubview(itemImageView!)
-        container.addArrangedSubview(itemLabel!)
+        container = UIView.HStack(spacing: 16,alignment: .fill, distribution: .fill)
+        container!.translatesAutoresizingMaskIntoConstraints = false
+        container!.addArrangedSubview(itemImageView!)
+        container!.addArrangedSubview(itemLabel!)
         
-        self.contentView.addSubview(container)
+        self.contentView.addSubview(container!)
         
+        
+        self.addAllViewConstraints()
+       
+    }
+    
+    
+    func addAllViewConstraints() {
         let viewDict = ["image":itemImageView, "title": itemLabel,"container":container]
         
         let containerHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[container]-margin-|", options: [.alignAllCenterY], metrics: metrics, views: viewDict as [String : Any])
@@ -45,10 +52,7 @@ class ItemCell: UITableViewCell {
         
         
         NSLayoutConstraint.activate(allViewContraints)
-        
-       
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

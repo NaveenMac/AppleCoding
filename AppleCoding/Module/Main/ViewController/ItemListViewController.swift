@@ -55,6 +55,10 @@ class ItemListViewController: UIViewController {
             NSLayoutConstraint.deactivate(allViewConstraints)
             allViewConstraints.removeAll()
         }
+        self.addAllViewConstraints()
+    }
+    
+    private func addAllViewConstraints(){
         let newInsets = self.view.safeAreaInsets
         let leftMargin = newInsets.left > 0 ? newInsets.left : Metrics.padding
         let rightMargin = newInsets.right > 0 ? newInsets.right:Metrics.padding
@@ -76,10 +80,7 @@ class ItemListViewController: UIViewController {
         allViewConstraints+=tableVerticalConstraints
         
         NSLayoutConstraint.activate(allViewConstraints)
-        
-        
     }
-
 
 }
 
