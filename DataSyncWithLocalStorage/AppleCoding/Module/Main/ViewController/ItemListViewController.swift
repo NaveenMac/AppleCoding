@@ -66,6 +66,8 @@ class ItemListViewController: UIViewController {
         // set table datasource
         self.table.dataSource = tableDataSource
         self.table.delegate = self
+        self.table.reloadData()
+        self.addAllViewConstraints()
     }
     private func checkForFileDirectory() throws{
         let defaultManager = FileManager.default
